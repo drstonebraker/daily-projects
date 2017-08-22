@@ -1,5 +1,5 @@
 class AddLimitToSex < ActiveRecord::Migration[5.1]
   def change
-    change_column :cats, :sex, :string, limit: 1
+    change_column :cats, :sex, :string, limit: '1'
   end
 end
