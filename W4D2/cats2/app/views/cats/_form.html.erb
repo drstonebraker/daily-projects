@@ -1,10 +1,10 @@
-<% if params[:id] %>
-  <form action="<%=cat_url(cat)%>" method="post">
-    <input type="hidden" name="_method" value="PATCH">
-  <% else %>
-    <form action="<%=cats_url%>" method="post">
-    <% cat = Cat.new({name: '', color: '', sex: '', birth_date: '', description: ''}) %>
-  <% end %>
+<% cat ||= Cat.new({name: '', color: '', sex: '', birth_date: '', description: ''})%>
+<% if cat.persisted? %>
+<form action="<%=cat_url(cat)%>" method="post">
+  <input type="hidden" name="_method" value="PATCH">
+<% else %>
+<form action="<%=cats_url%>" method="post">
+<% end %>
   <label for="name">Name</label>
   <input id='name' type="text" name="cat[name]" value="<%= cat.name  %>">
   <label for="color">Color</label>
