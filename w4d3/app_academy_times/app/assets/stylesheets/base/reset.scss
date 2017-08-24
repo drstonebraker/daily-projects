@@ -4,7 +4,8 @@ html, body, header, nav, h1, a,
 ul, li, strong, main, button, i,
 section, img, div, h2, p, form,
 fieldset, label, input, textarea,
-span, article, footer, time, small {
+span, article, footer, time, small,
+figure {
   margin: 0;
   padding: 0;
   border: 0;
@@ -26,6 +27,11 @@ img {
   display: block;
   width: 100%;
   height: auto;
+}
+
+iframe {
+  display: block;
+  width: 100%;
 }
 
 input[type="password"],
