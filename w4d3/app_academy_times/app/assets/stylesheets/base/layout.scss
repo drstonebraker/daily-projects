@@ -17,7 +17,7 @@ button {
 	border-color: $dark-blue;
 	color: white;
 	font-weight: bold;
-	padding: .9em;
+	padding: .7em .9em;
 	border-radius: 3px;
 	transition: background-color 300ms ease-in-out;
 	font-family: $sans-serif;
@@ -53,4 +53,8 @@ hr {
 .hr-top {
 	height: 2px;
 	margin-bottom: 1px;
+}
+
+.hidden {
+	display: none !important;
 }
