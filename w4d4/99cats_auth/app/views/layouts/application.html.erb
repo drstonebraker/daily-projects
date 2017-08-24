@@ -9,6 +9,22 @@
   </head>
 
   <body>
+    <header>
+      <nav>
+        <ul>
+          <% if current_user %>
+          <li><%= current_user.username %></li>
+          <li><%= button_to "Log out", :session, method: :delete %></li>
+          <% else %>
+          <li> <%= button_to "Log In", :new_session, method: :get %></li>
+          <li> <%= button_to "Sign Up", :new_user, method: :get %></li>
+          <% end %>
+        </ul>
+      </nav>
+
+
+    </header>
+
     <%= yield %>
   </body>
 </html>
