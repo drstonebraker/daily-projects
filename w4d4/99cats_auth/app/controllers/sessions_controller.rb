@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_action :require_no_user!, only: %i(create new)
 
   def new
     @user = User.new
@@ -20,10 +21,6 @@ class SessionsController < ApplicationController
     current_user.reset_session_token!
     session[:session_token] = nil
     redirect_to new_session_url
-  end
-
-  def login!(user)
-    session[:session_token] = user.reset_session_token!
   end
 
   private
