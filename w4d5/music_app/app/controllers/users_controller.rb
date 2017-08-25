@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_no_user!, only: %i(new create)
+  before_action :require_user!, only: %i(show)
 
   def new
     @user = User.new(email: flash[:email])
