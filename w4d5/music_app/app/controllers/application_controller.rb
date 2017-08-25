@@ -13,6 +13,14 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    !@current_user.nil?
+    !current_user.nil?
+  end
+
+  def require_user!
+    redirect_to new_session_url unless logged_in?
+  end
+
+  def require_no_user!
+    redirect_to root_url if logged_in?
   end
 end
