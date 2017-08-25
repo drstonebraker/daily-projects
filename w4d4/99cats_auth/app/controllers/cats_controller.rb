@@ -1,5 +1,6 @@
 class CatsController < ApplicationController
-  before_action :require_logged_in!, only: %i( new create edit update  )
+  before_action :require_logged_in!, only: %i( new create edit update )
+  before_action :require_ownership!, only: %i( edit update )
 
   def index
     @cats = Cat.all
@@ -29,12 +30,10 @@ class CatsController < ApplicationController
   end
 
   def edit
-    @cat = Cat.find(params[:id])
     render :edit
   end
 
   def update
-    @cat = Cat.find(params[:id])
     if @cat.update_attributes(cat_params)
       redirect_to cat_url(@cat)
     else
@@ -46,7 +45,18 @@ class CatsController < ApplicationController
   private
 
   def require_logged_in!
-    redirect_to new_session_url unless logged_in?
+    unless logged_in?
+      flash[:errors] = ['You must be logged in to create or edit a cat']
+      redirect_to new_session_url
+    end
+  end
+
+  def require_ownership!
+    @cat = current_user.cats.find_by(id: params[:id])
+    if @cat.nil?
+      flash[:errors] = ['This is not your cat']
+      redirect_to cat_url(params[:id])
+    end
   end
 
   def cat_params

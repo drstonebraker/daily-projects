@@ -1,4 +1,6 @@
 class CatRentalRequestsController < ApplicationController
+  before_action :require_ownership!, only: %i( approve deny )
+
   def approve
     current_cat_rental_request.approve!
     redirect_to cat_url(current_cat)
@@ -24,6 +26,15 @@ class CatRentalRequestsController < ApplicationController
   end
 
   private
+
+  # TODO: restrict approve/deny requests to cat owner
+  # def require_ownership!
+  #   @cat = current_user.cats.find_by(id: params[:id])
+  #   if @cat.nil?
+  #     flash[:errors] = ['This is not your cat']
+  #     redirect_to cat_url(params[:id])
+  #   end
+  # end
 
   def current_cat_rental_request
     @rental_request ||=
