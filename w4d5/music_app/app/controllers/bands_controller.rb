@@ -1,5 +1,5 @@
 class BandsController < ApplicationController
-  before_action :require_user!, only: %i(new create edit update) # why no double render?
+  before_action :require_user!, only: %i(new create edit update)
   before_action :require_ownership!, only: %i(edit update)
 
   def index
@@ -44,12 +44,8 @@ class BandsController < ApplicationController
 
   def destroy
     @band = Band.find(params[:id])
-    if @band.delete
-      redirect_to bands_url
-    else
-      flash[:errors] = @band.errors.full_messages
-      redirect_to band_url(@band)
-    end
+    @band.destroy
+    redirect_to bands_url
   end
 
   private
