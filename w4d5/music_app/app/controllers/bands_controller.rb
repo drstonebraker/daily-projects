@@ -1,6 +1,11 @@
 class BandsController < ApplicationController
   before_action :require_user!, only: %i(new create edit update)
 
+  def index
+    @bands = Band.all
+    render :index
+  end
+
   def new
     @band = Band.new
     render :new
@@ -19,6 +24,18 @@ class BandsController < ApplicationController
   def show
     @band = Band.find(params[:id])
     render :show
+  end
+
+  def edit
+
+  end
+
+  def update
+
+  end
+
+  def destroy
+
   end
 
   private
