@@ -1,10 +1,15 @@
 class BandsController < ApplicationController
   before_action :require_user!, only: %i(new create edit update)
-  before_action :require_ownership!, only: %i(edit update)
+  # before_action :require_ownership!, only: %i(edit update)
 
   def index
     @bands = Band.all
     render :index
+  end
+  
+  def show
+    @band = Band.find(params[:id])
+    render :show
   end
 
   def new
@@ -20,11 +25,6 @@ class BandsController < ApplicationController
       flash[:errors] = @band.errors.full_messages
       redirect_to new_band_url
     end
-  end
-
-  def show
-    @band = Band.find(params[:id])
-    render :show
   end
 
   def edit
