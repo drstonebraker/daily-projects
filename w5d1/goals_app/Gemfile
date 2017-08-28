@@ -54,10 +54,10 @@ group :development do
 end
 
 group :test do
-  gem 'faker'
-  gem 'guard-rspec'
-  gem 'launchy'
   gem 'rspec-rails', '~> 3.0'
+  gem 'guard-rspec'
+  gem 'faker'
+  gem 'launchy'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
