@@ -9,9 +9,11 @@
   </head>
 
   <body>
+    <%= current_user %>
     <ul>
       <% if logged_in? %>
       <li><%= current_user.username %></li>
+      <li><%= button_to 'Log Out', session_url, method: :delete %></li>
       <% else %>
       <% end %>
     </ul>
