@@ -12,8 +12,17 @@
 
 FactoryGirl.define do
   factory :user do
-    username "MyString"
-    password_digest "MyString"
-    session_token "MyString"
+    password = 'password'
+    password password
+    username { Faker::Internet.user_name }
+    password_digest BCrypt::Password.create(password)
+
+    factory :unsaved_user do
+      username { Faker::Internet.user_name }
+    end
+
+    factory :invalid_password do
+      password 'notrealpassword'
+    end
   end
 end
