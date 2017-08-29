@@ -17,6 +17,11 @@ class User < ApplicationRecord
   attr_reader :password
   after_initialize :ensure_session_token!
 
+  has_many :modded_subs,
+    primary_key: :id,
+    foreign_key: :moderator_id,
+    class_name: :Sub
+
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
     return nil if user.nil?
@@ -37,7 +42,7 @@ class User < ApplicationRecord
   def ensure_session_token!
     self.session_token ||= self.class.generate_session_token
   end
-  
+
   def valid_password?(password)
     BCrypt::Password.new(self.password_digest).is_password?(password)
   end

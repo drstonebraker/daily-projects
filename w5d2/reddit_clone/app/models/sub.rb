@@ -11,4 +11,12 @@
 #
 
 class Sub < ApplicationRecord
+  validates :title, :moderator, presence: true # need to validate belongs_to?  has_many?
+  validates :title, uniqueness: true
+
+  belongs_to :moderator,
+    primary_key: :id,
+    foreign_key: :moderator_id,
+    class_name: :User
+
 end

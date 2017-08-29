@@ -1,6 +1,6 @@
 class SubsController < ApplicationController
   before_action :require_user!, only: %i(new create edit update destroy)
-  before_action :require_ownership!, only: %i(edit update destroy)
+  before_action :require_mod_ownership!, only: %i(edit update destroy)
 
   def index
     @subs = Sub.all
@@ -55,5 +55,11 @@ class SubsController < ApplicationController
 
   def sub_params
     params.require(:sub).permit(:title, :description)
+  end
+
+  def require_mod_ownership!
+    unless Sub.find(params[:id]).moderator_id == current_user.id
+      redirect_to sub_url(params[:id])
+    end
   end
 end
