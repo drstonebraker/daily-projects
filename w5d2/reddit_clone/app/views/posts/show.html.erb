@@ -1,2 +1,9 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<% if @post.url %>
+<h1><%= link_to @post.title, @post.url %></h1>
+<% else %>
+<h1><%= @post.title %></h1>
+<% end %>
+<h5>By: <%= @post.author.username %></h5>
+<h5>In: <%= @post.sub.title %></h5>
+
+<p><%= @post.content %></p>
