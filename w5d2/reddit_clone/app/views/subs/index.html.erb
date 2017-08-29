@@ -1,4 +1,7 @@
 <h1>All Subs</h1>
+<% if logged_in? %>
+<%= link_to "Create New Sub", new_sub_url %>
+<% end %>
 <ul>
   <%= render @subs %>
 </ul>
