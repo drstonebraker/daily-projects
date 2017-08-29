@@ -10,12 +10,30 @@ feature 'the goals' do
       expect(page).to have_content 'New Goal'
     end
 
-    scenario 'redirects user to personal index page' do
-      visit new_goal_url
+    scenario 'can be accessed from public goals index page'
+    scenario 'can be accessed from private goals index page'
 
-      expect(page).to have_content 'New Goal'
-    end
+    scenario 'can be completed successfully'
+
+    scenario 'redirects user to private index page' #do
+    #   expect(page).to have_content 'New Goal'
+    # end
+
+    scenario 'redirects user to personal index page'
+    scenario 'cannot be completed unless logged in'
+
 
   end
+
+  feature 'making goals public or private' do
+    scenario 'can be made private'
+    scenario 'can be made public'
+  end
+
+  feature 'marking goals as completed/uncompleted' do
+    scenario 'can be marked as completed'
+    scenario 'can be marked as uncompleted'
+  end
+
 
 end
