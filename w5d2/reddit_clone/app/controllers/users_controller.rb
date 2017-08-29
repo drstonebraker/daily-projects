@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def new
-    @user = flash[:user] || User.new
+    @user = User.new(flash[:user])
   end
 
   def create

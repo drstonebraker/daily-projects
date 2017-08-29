@@ -22,7 +22,7 @@ class User < ApplicationRecord
     foreign_key: :moderator_id,
     class_name: :Sub
 
-  belongs_to :posts,
+  has_many :posts,
     primary_key: :id,
     foreign_key: :author_id,
     class_name: :Post

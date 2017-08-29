@@ -12,7 +12,7 @@ class SubsController < ApplicationController
   end
 
   def new
-    @sub = flash[:sub] || Sub.new
+    @sub = Sub.new(flash[:sub])
   end
 
   def create
@@ -28,7 +28,7 @@ class SubsController < ApplicationController
   end
 
   def edit
-    @sub = flash[:sub] || Sub.new
+    @sub = Sub.new(flash[:sub])
   end
 
   def update
