@@ -47,7 +47,7 @@ class SubsController < ApplicationController
       redirect_to root_url
     else
       flash[:errors] = sub_reddit.errors.full_messages
-      redirect_to = sub_url(params[:id])
+      redirect_to sub_url(params[:id])
     end
   end
 
