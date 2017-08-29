@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def new
-    @user = User.new
+    @user = flash[:user] || User.new
   end
 
   def create
@@ -10,7 +10,8 @@ class UsersController < ApplicationController
       redirect_to root_url
     else
       flash[:errors] = @user.errors.full_messages
-      render :new
+      flash[:user] = @user
+      redirect_to new_user_url
     end
   end
 

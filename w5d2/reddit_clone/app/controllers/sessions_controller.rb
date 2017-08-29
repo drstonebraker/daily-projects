@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
+
   def new
-    @user = User.new
+    @user = flash[:user] || User.new
   end
 
   def create
@@ -9,9 +10,9 @@ class SessionsController < ApplicationController
       login!(@user)
       redirect_to root_url
     else
-      @user = User.new
+      flash[:user] = User.new(username: user_params[:username])
       flash[:errors] = ['Invalid username or password']
-      render :new
+      redirect_to new_session_url
     end
   end
 
