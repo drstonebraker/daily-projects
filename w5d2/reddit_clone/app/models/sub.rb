@@ -5,9 +5,9 @@
 #  id           :integer          not null, primary key
 #  title        :string           not null
 #  description  :text
-#  moderator_id :string           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  moderator_id :integer
 #
 
 class Sub < ApplicationRecord
@@ -19,4 +19,5 @@ class Sub < ApplicationRecord
     foreign_key: :moderator_id,
     class_name: :User
 
+  has_many :posts
 end
