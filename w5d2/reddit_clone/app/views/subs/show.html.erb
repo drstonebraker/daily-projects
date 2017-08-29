@@ -1,2 +1,13 @@
-<h1>Subs#show</h1>
-<p>Find me in app/views/subs/show.html.erb</p>
+<h1><%= @sub.title %></h1>
+<h5>By: <%= @sub.moderator.username %></h5>
+<p><%= @sub.description %></p>
+
+<nav>
+  <ul>
+    <li><%= link_to 'All Subs', subs_url %></li>
+    <% if @sub.moderator_id == current_user.id %>
+    <li><%= link_to 'Edit This Sub', edit_sub_url(params[:id]) %></li>
+    <li><%= button_to 'Delete This Sub', sub_url(params[:id]), method: :delete %></li>
+    <% end %>
+  </ul>
+</nav>
