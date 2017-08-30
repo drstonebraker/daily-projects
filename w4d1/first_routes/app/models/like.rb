@@ -18,8 +18,7 @@ class Like < ApplicationRecord
 
   # def artwork_or_comment_presence
   #   if (comment_id && artwork_id) || !(comment_id || artwork_id)
-  #     errors[:comment_id] << 'Like must be for either comment or artwork'
-  #     errors[:artwork_id] << 'Like must be for either comment or artwork'
+  #     errors[:base] << 'Like must be for either comment or artwork'
   #   end
   # end
 

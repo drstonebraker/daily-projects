@@ -14,7 +14,9 @@ class CommentsController < ApplicationController
   end
 
   def create
+    params
     @comment = Comment.new(comment_params)
+    puts @comment
     if @comment.save
       render json: @comment
     else
