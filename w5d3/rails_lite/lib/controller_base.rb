@@ -2,6 +2,7 @@ require 'active_support'
 require 'active_support/core_ext'
 require 'erb'
 require_relative './session'
+require 'active_support/inflector'
 
 class ControllerBase
   attr_reader :req, :res, :params
@@ -33,12 +34,26 @@ class ControllerBase
     res['Content-Type'] = content_type
     res.write(content)
     @already_built_response = true
-
   end
 
   # use ERB and binding to evaluate templates
   # pass the rendered html to render_content
   def render(template_name)
+    dir_path = File.dirname(__FILE__)
+    template_path = File.join(
+      dir_path,
+      '..',
+      "views",
+      controller_name.underscore,
+      "#{template_name}.html.erb"
+      )
+
+    template = File.read(template_path)
+    render_content(
+      ERB.new(template).result(binding),
+      'text/html'
+    )
+
   end
 
   # method exposing a `Session` object
@@ -47,5 +62,11 @@ class ControllerBase
 
   # use this with the router to call action_name (:index, :show, :create...)
   def invoke_action(name)
+  end
+
+  private
+
+  def controller_name
+    self.class.to_s
   end
 end
