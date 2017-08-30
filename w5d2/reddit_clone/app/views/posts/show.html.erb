@@ -1,9 +1,14 @@
 <% if @post.url %>
-<h1><%= link_to @post.title, @post.url %></h1>
+<h1><%= link_to @post.title, "http://www.#{@post.url}" %></h1>
 <% else %>
 <h1><%= @post.title %></h1>
 <% end %>
 <h5>By: <%= @post.author.username %></h5>
 <h5>In: <%= @post.sub.title %></h5>
+
+<% if logged_in? && @post.author_id == current_user.id %>
+<li><%= link_to 'Edit This Post', edit_post_url(params[:id]) %></li>
+<li><%= button_to 'Delete This Post', post_url(params[:id]), method: :delete %></li>
+<% end %>
 
 <p><%= @post.content %></p>

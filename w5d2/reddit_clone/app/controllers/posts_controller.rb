@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = flash[:post] || Post.new
+    @post = Post.new(flash[:post])
   end
 
   def create
@@ -20,16 +20,16 @@ class PostsController < ApplicationController
     @post.author_id = current_user.id
     @post.sub_id = params[:sub_id]
     if @post.save
-      redirect_to post_url(params[:id])
+      redirect_to post_url(@post)
     else
-      flash[:errors] = @post.errors
+      flash[:errors] = @post.errors.full_messages
       flash[:post] = @post
-      redirect_to new_post_url
+      redirect_to new_sub_post_url(params[:sub_id])
     end
   end
 
   def edit
-    @post = flash[:post] || Post.new
+    @post = Post.new(flash[:post])
   end
 
   def update
