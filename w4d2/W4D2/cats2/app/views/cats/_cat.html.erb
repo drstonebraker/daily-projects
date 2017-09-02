@@ -1,0 +1,29 @@
+<p><% params[:id] ? 'Cat' : 'Cats' %></p>
+<table>
+  <tr>
+    <th>Name</th>
+    <td><%= cat.name %></td>
+  </tr>
+<% if params[:id] %>
+  <tr>
+    <th>Color</th>
+    <td><%= cat.color %></td>
+  </tr>
+  <tr>
+    <th>Sex</th>
+    <td><%= cat.sex %></td>
+  </tr>
+  <tr>
+    <th>Birth Date</th>
+    <td><%= cat.birth_date %></td>
+  </tr>
+  <tr>
+    <th>description</th>
+    <td><%= cat.description %></td>
+  </tr>
+  </table>
+<% else %>
+    <%= link_to "Show Cat", cat_url(cat) %>
+  </table>
+<% end %>
+<%= button_to "Delete Cat", cat_url(cat), method: :delete %>

@@ -1,0 +1,9 @@
+<% if logged_in? %>
+<h1>Your Goals</h1>
+<% else %>
+<h1>All Goals</h1>
+<% end %>
+<%= link_to 'New Goal', new_goal_url %>
+
+<% render @goals %>
+<!-- @goals needs to includes user in controller -->
