@@ -325,6 +325,7 @@ module.exports = MovingObject;
 
 const MovingObject = __webpack_require__(5);
 const Util = __webpack_require__(4);
+const Bullet = __webpack_require__(7)
 
 function Ship(options) {
   options.color = Ship.COLOR;
@@ -349,7 +350,43 @@ Ship.prototype.power = function power(impulse) {
   this.vel = [this.vel[0] + impulse[0], this.vel[1] + impulse[1]];
 };
 
+Ship.prototype.fireBullet = function fireBullet() {
+  const bullet = new Bullet({pos: this.pos, vel: this.vel, game: this.game});
+
+};
+
 module.exports = Ship;
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+const MovingObject = __webpack_require__(5);
+const Util = __webpack_require__(4);
+const Asteroid = __webpack_require__(3);
+
+function Bullet (options) {
+  options.color = Bullet.COLOR;
+  options.radius = Bullet.RADIUS;
+  options.vel = Util.scale(options.vel, 1.5);
+
+  MovingObject.call(this, options);
+
+}
+
+Bullet.COLOR = '#000';
+Bullet.RADIUS = 3;
+
+Util.inherits(Bullet, MovingObject);
+
+Bullet.prototype.collidesWith = function collidesWith(otherObject) {
+  // this.game.remove(this);
+  // this.game.remove(otherObject);
+  if (otherObject instanceof Asteroid) {
+    this.game.remove(otherObject);
+  }
+};
 
 
 /***/ })
