@@ -1,0 +1,26 @@
+
+<% if request.fullpath =~ Regexp.new('/session') %>
+  <% action_url = session_url %>
+  <% button_val = 'Log me in' %>
+  <% h1_val = 'Log into 99 Cats' %>
+<% elsif request.fullpath =~ Regexp.new('/users') %>
+  <% action_url = users_url %>
+  <% button_val = 'Sign me up' %>
+  <% h1_val = 'Sign up for 99 Cats' %>
+<% end %>
+
+<h1><%= h1_val %></h1>
+
+<%= render 'shared/errors' %>
+
+<form action="<%= action_url %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label for="username">Username</label>
+  <input id="username" type="text" name="user[username]">
+  <br>
+  <label for="password">Password (must be at least 6 characters)</label>
+  <input id="password" type="password" name="user[password]">
+
+  <input type="submit" value="<%= button_val %>">
+</form>
