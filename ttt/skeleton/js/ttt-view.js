@@ -23,7 +23,7 @@ class View {
       setTimeout(() => {
         this.game.swapTurn();
         alert('game is over, won by: ' + this.game.currentPlayer);
-      }
+      }, 0
       );
     }
 

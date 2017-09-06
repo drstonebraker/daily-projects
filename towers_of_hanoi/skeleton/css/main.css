@@ -1,0 +1,32 @@
+body {
+  background: PapayaWhip;
+}
+
+.disc {
+  background:green;
+  height: 100px;
+  border-radius: 50px;
+  border: 1px solid black;
+  margin: 1px auto 0 auto;
+  box-sizing:border-box;
+}
+
+.tower {
+  border-bottom: 5px solid black;
+  padding: 0;
+  display:inline-block;
+  width: 25vw;
+  margin: 0 10px 0 10px;
+  vertical-align: bottom;
+  list-style-type: none;
+  padding: 5px;
+}
+
+.tower:hover {
+  background:pink;
+  cursor:pointer;
+}
+
+.selected {
+  background-color: yellow;
+}
