@@ -181,6 +181,7 @@ class DOMNodeCollection {
     }
     return new DOMNodeCollection(arr);
   }
+
   remove(selector){
     const matchedElements = Array.from(document.querySelectorAll(selector));
     const removeIndices = [];
@@ -196,6 +197,25 @@ class DOMNodeCollection {
     this.elements = this.elements.filter( (e, i) => {
       return !removeIndices.includes(i);
     });
+  }
+
+  on(type, callback) {
+    for (var i = 0; i < this.elements.length; i++) {
+      this.elements[i].addEventListener(type, callback);
+      this.elements[i].listeners = this.elements[i].listeners || {};
+      this.elements[i].listeners[type] = this.elements[i].listeners[type] || [];
+      this.elements[i].listeners[type].push(callback);
+    }
+  }
+
+  off(type) {
+    for (var i = 0; i < this.elements.length; i++) {
+      let callbacks = this.elements[i].listeners[type];
+      for (var j = 0; j < callbacks.length; j++) {
+        this.elements[i].removeEventListener(type, callbacks[j]);
+        this.elements[i].listeners[type] = [];
+      }
+    }
   }
 }
 
