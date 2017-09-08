@@ -1,0 +1,6 @@
+<% if goal.public || logged_in? %>
+<li>
+  <h3 class="<%= 'goal--completed' if goal.completed %>"><%= goal.title %></h3>
+  <h6><%= "By: #{goal.user.username}" %></h6>
+</li>
+<% end %>
