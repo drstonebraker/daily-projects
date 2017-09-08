@@ -1,0 +1,10 @@
+<%= render @cat %>
+
+<% @cat.rental_requests.order(:start_date).each do |request| %>
+  <h4>Request</h4>
+  <%= request.start_date %>
+  <br>
+  <%= request.end_date %>
+  <br>
+  <br>
+<% end %>
