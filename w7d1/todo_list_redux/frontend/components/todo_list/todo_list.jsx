@@ -10,6 +10,7 @@ const TodoList = ({ todos,receiveTodo,removeTodo }) => (
           todo={todo}
           key={`todolistitem-${idx}`}
           removeTodo={removeTodo}
+          receiveTodo={receiveTodo}
           />;
       }) }
     </ul>
