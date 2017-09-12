@@ -1,0 +1,27 @@
+<!--
+local vars:
+sub
+action
+button_val
+-->
+
+<form action="<%= action %>" method="post">
+  <%= auth_token %>
+  <% if params[:id] %>
+    <%= patch_override %>
+  <% end %>
+
+  <label for="">Title:
+    <input type="text" name="sub[title]" value="<%= sub.title %>">
+  </label>
+
+  <label for="">Description:
+    <textarea name="sub[description]" rows="8" cols="80">
+      <%= sub.description %>
+    </textarea>
+  </label>
+
+  <input type="submit" value="<%= button_val %>">
+
+  <%= render 'shared/errors' %>
+</form>
