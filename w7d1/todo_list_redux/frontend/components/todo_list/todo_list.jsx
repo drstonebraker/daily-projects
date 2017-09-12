@@ -8,6 +8,7 @@ const TodoList = ({ todos,receiveTodo }) => (
       { todos.map((todo,idx) => {
         return <TodoListItem
           todo={todo}
+          key={idx}
           />;
       }) }
     </ul>

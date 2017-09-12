@@ -4,49 +4,49 @@ export default class TodoForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      newTodo: {
-        titleVal: "",
-        bodyVal: ""
-      }
+      titleVal: "",
+      bodyVal: ""
     };
     this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleBodyChange = this.handleBodyChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleTitleChange(event){
     this.setState({
-      newTodo:{
-        titleVal: event.target.value
-      }
+      titleVal: event.target.value
     });
   }
 
   handleBodyChange(event){
     this.setState({
-      newTodo:{
-        bodyVal: event.target.value
-      }
+      bodyVal: event.target.value
     });
   }
 
   handleSubmit(event){
     event.preventDefault();
-    const {titleVal,bodyVal} = this.state.newTodo;
+    const {titleVal,bodyVal} = this.state;
     const newTodo = {
-      // id: TODO
+      id: Date.now(),
       title: titleVal,
       body: bodyVal,
       done: false
     };
     this.props.receiveTodo(newTodo);
+    this.setState({titleVal:"",bodyVal:""});
   }
 
   render (){
-    const {titleVal,bodyVal} = this.state.newTodo;
+    const {titleVal,bodyVal} = this.state;
     return (
       <form>
-        <input onChange={this.handleTitleChange} type="text" value={titleVal} />
-        <input onChange={this.handleBodyChange} type="text" value={bodyVal} />
+        <label> Title
+          <input onChange={this.handleTitleChange} type="text" value={titleVal} />
+        </label>
+        <label>Body
+          <input onChange={this.handleBodyChange} type="text" value={bodyVal} />
+        </label>
         <input onClick={this.handleSubmit} type="submit" value="Add Todo" />
       </form>
     );
