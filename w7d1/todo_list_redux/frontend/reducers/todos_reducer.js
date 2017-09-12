@@ -1,4 +1,4 @@
-import { RECEIVE_TODOS,RECEIVE_TODO } from '../actions/todo_actions.js';
+import { RECEIVE_TODOS, RECEIVE_TODO, REMOVE_TODO } from '../actions/todo_actions.js';
 import { convertArrayToObject } from './reducer_utils';
 const initialState = {
   1: {
@@ -15,14 +15,19 @@ const initialState = {
   },
 };
 
-export const todosReducer = (state = initialState, action) =>{
+export const todosReducer = (state = initialState, action) => {
   Object.freeze(state);
+  let newState;
   switch (action.type) {
     case RECEIVE_TODOS:
       return convertArrayToObject(action.todos);
     case RECEIVE_TODO:
-      const newState = Object.assign({},state);
+      newState = Object.assign({},state);
       newState[action.todo.id] = action.todo;
+      return newState;
+    case REMOVE_TODO:
+      newState = Object.assign({},state);
+      delete newState[action.todo.id];
       return newState;
     default:
       return state;
