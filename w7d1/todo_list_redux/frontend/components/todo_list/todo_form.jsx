@@ -48,6 +48,9 @@ export default class TodoForm extends React.Component {
           <input onChange={this.handleBodyChange} type="text" value={bodyVal} />
         </label>
         <input onClick={this.handleSubmit} type="submit" value="Add Todo" />
+        <ul>
+          {this.props.errors.map((error,idx) => <li key={idx}>{error}</li>)}
+        </ul>
       </form>
     );
   }
