@@ -33,8 +33,8 @@ export default class TodoForm extends React.Component {
       body: bodyVal,
       done: false
     };
-    this.props.receiveTodo(newTodo);
-    this.setState({titleVal:"",bodyVal:""});
+    this.props.createTodo(newTodo)
+      .then(()=>this.setState({titleVal:"",bodyVal:""}));
   }
 
   render (){
