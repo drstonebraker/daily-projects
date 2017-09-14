@@ -42193,9 +42193,13 @@ var PokemonIndex = function (_React$Component) {
       });
 
       return _react2.default.createElement(
-        'ul',
-        null,
-        pokemonLis
+        'section',
+        { className: 'pokedex' },
+        _react2.default.createElement(
+          'ul',
+          null,
+          pokemonLis
+        )
       );
     }
   }]);
@@ -42220,15 +42224,21 @@ var _react = __webpack_require__(24);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(256);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var PokemonLi = function PokemonLi(_ref) {
   var pokemon = _ref.pokemon;
   return _react2.default.createElement(
-    "li",
+    'li',
     null,
-    pokemon.name,
-    _react2.default.createElement("img", { src: pokemon.image_url, className: "small" })
+    _react2.default.createElement(
+      _reactRouterDom.Link,
+      { to: '/pokemon/' + pokemon.id },
+      pokemon.name,
+      _react2.default.createElement('img', { src: pokemon.image_url, className: 'small' })
+    )
   );
 };
 

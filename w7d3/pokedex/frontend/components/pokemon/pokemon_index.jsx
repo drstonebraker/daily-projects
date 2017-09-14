@@ -19,9 +19,11 @@ export default class PokemonIndex extends React.Component {
     });
 
     return (
-      <ul>
-        {pokemonLis}
-      </ul>
+      <section className="pokedex">
+        <ul>
+          {pokemonLis}
+        </ul>
+      </section>
     );
   }
 }
