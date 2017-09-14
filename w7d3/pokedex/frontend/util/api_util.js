@@ -4,3 +4,9 @@ export const fetchAllPokemon = () => (
     url: '/api/pokemon'
   })
 );
+
+const APIUtil = {
+  fetchAllPokemon
+};
+
+export default APIUtil;
