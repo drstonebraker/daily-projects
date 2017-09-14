@@ -3,6 +3,14 @@ import rootReducer from '../reducers/root_reducer';
 import logger from 'redux-logger';
 import thunk from '../middleware/thunk';
 
-const configureStore = () => createStore(rootReducer, applyMiddleware(thunk,logger));
+const preloadedState = {
+  entities: {
+    pokemon: {
+
+    }
+  }
+};
+
+const configureStore = () => createStore(rootReducer, preloadedState, applyMiddleware(thunk,logger));
 
 export default configureStore;
