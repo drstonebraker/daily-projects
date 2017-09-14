@@ -10805,7 +10805,7 @@ function compose() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.requestAllPokemon = exports.receiveAllPokemon = exports.RECEIVE_ALL_POKEMON = undefined;
+exports.requestSinglePokemon = exports.requestAllPokemon = exports.receivePokemon = exports.receiveAllPokemon = exports.RECEIVE_POKEMON = exports.RECEIVE_ALL_POKEMON = undefined;
 
 var _api_util = __webpack_require__(93);
 
@@ -10814,6 +10814,7 @@ var _api_util2 = _interopRequireDefault(_api_util);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var RECEIVE_ALL_POKEMON = exports.RECEIVE_ALL_POKEMON = 'RECEIVE_ALL_POKEMON';
+var RECEIVE_POKEMON = exports.RECEIVE_POKEMON = 'RECEIVE_POKEMON';
 
 var receiveAllPokemon = exports.receiveAllPokemon = function receiveAllPokemon(pokemon) {
   return {
@@ -10822,10 +10823,25 @@ var receiveAllPokemon = exports.receiveAllPokemon = function receiveAllPokemon(p
   };
 };
 
+var receivePokemon = exports.receivePokemon = function receivePokemon(pokemon) {
+  return {
+    type: RECEIVE_POKEMON,
+    pokemon: pokemon
+  };
+};
+
 var requestAllPokemon = exports.requestAllPokemon = function requestAllPokemon() {
   return function (dispatch) {
     return _api_util2.default.fetchAllPokemon().then(function (pokemon) {
       return dispatch(receiveAllPokemon(pokemon));
+    });
+  };
+};
+
+var requestSinglePokemon = exports.requestSinglePokemon = function requestSinglePokemon(pokemonId) {
+  return function (dispatch) {
+    return _api_util2.default.fetchPokemon(pokemonId).then(function (pokemon) {
+      return dispatch(receivePokemon(pokemon));
     });
   };
 };
@@ -10847,8 +10863,16 @@ var fetchAllPokemon = exports.fetchAllPokemon = function fetchAllPokemon() {
   });
 };
 
+var fetchPokemon = exports.fetchPokemon = function fetchPokemon(pokemonId) {
+  return $.ajax({
+    method: 'GET',
+    url: 'api/pokemon/' + pokemonId
+  });
+};
+
 var APIUtil = {
-  fetchAllPokemon: fetchAllPokemon
+  fetchAllPokemon: fetchAllPokemon,
+  fetchPokemon: fetchPokemon
 };
 
 exports.default = APIUtil;
@@ -11339,10 +11363,20 @@ var _root2 = _interopRequireDefault(_root);
 
 var _reactRouterDom = __webpack_require__(256);
 
+var _api_util = __webpack_require__(93);
+
+var _pokemon_actions = __webpack_require__(92);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+window.fetchPokemon = _api_util.fetchPokemon;
+window.requestSinglePokemon = _pokemon_actions.requestSinglePokemon;
 
 document.addEventListener('DOMContentLoaded', function () {
   var store = (0, _store2.default)();
+
+  window.store = store;
+
   var rootEl = document.getElementById('root');
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), rootEl);
 });
