@@ -24112,10 +24112,15 @@ var _pokemon_reducer = __webpack_require__(217);
 
 var _pokemon_reducer2 = _interopRequireDefault(_pokemon_reducer);
 
+var _items_reducer = __webpack_require__(282);
+
+var _items_reducer2 = _interopRequireDefault(_items_reducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var entitiesReducer = (0, _redux.combineReducers)({
-  pokemon: _pokemon_reducer2.default
+  pokemon: _pokemon_reducer2.default,
+  items: _items_reducer2.default
 });
 
 exports.default = entitiesReducer;
@@ -24140,9 +24145,19 @@ var pokemonReducer = function pokemonReducer() {
   var action = arguments[1];
 
   Object.freeze(state);
+  var newState = void 0;
   switch (action.type) {
     case _pokemon_actions.RECEIVE_ALL_POKEMON:
-      var newState = Object.assign({}, state, action.pokemon);
+      newState = Object.assign({}, state, action.pokemon);
+      return newState;
+    case _pokemon_actions.RECEIVE_POKEMON:
+      newState = Object.assign({}, state);
+      var newPokemon = action.pokemon.pokemon;
+      var itemIds = action.pokemon.items.map(function (item) {
+        return item.id;
+      });
+      newPokemon.item_ids = itemIds;
+      newState[newPokemon.id] = newPokemon;
       return newState;
     default:
       return state;
@@ -46563,6 +46578,60 @@ var withRouter = function withRouter(Component) {
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (withRouter);
+
+/***/ }),
+/* 282 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _pokemon_actions = __webpack_require__(92);
+
+var _action_utils = __webpack_require__(283);
+
+var defaultState = {};
+
+var itemsReducer = function itemsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
+  var action = arguments[1];
+
+  Object.freeze(state);
+  var newState = void 0;
+  switch (action.type) {
+    case _pokemon_actions.RECEIVE_POKEMON:
+      var newItems = (0, _action_utils.convertItemsArrayToObject)(action.pokemon.items);
+      newState = Object.assign({}, state, newItems);
+      return newState;
+    default:
+      return state;
+  }
+};
+
+exports.default = itemsReducer;
+
+/***/ }),
+/* 283 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var convertItemsArrayToObject = exports.convertItemsArrayToObject = function convertItemsArrayToObject(items) {
+  var result = {};
+  for (var i = 0; i < items.length; i++) {
+    var item = items[i];
+    result[item.id] = item;
+  }
+  return result;
+};
 
 /***/ })
 /******/ ]);
