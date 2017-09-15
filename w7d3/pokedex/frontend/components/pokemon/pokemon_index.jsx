@@ -1,5 +1,7 @@
 import React from 'react';
 import PokemonLi from './pokemon_li';
+import PokemonDetailContainer from './pokemon_detail_container';
+import { Route } from 'react-router-dom';
 
 export default class PokemonIndex extends React.Component {
   constructor(props) {
@@ -23,6 +25,9 @@ export default class PokemonIndex extends React.Component {
         <ul>
           {pokemonLis}
         </ul>
+        <Route
+          path="/pokemon/:pokemon_id/"
+          component={PokemonDetailContainer} />
       </section>
     );
   }

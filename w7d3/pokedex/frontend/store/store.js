@@ -5,9 +5,8 @@ import thunk from '../middleware/thunk';
 
 const preloadedState = {
   entities: {
-    pokemon: {
-
-    }
+    pokemon: {},
+    items: {},
   }
 };
 
