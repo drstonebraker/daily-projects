@@ -46804,10 +46804,9 @@ exports.default = PokemonDetail;
 
 /***/ }),
 /* 286 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/appacademy/Desktop/daily-projects/w7d3/pokedex/frontend/components/pokemon/pokemon_items.jsx'\n    at Error (native)");
 
 /***/ })
 /******/ ]);
