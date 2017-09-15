@@ -10866,7 +10866,7 @@ var fetchAllPokemon = exports.fetchAllPokemon = function fetchAllPokemon() {
 var fetchPokemon = exports.fetchPokemon = function fetchPokemon(pokemonId) {
   return $.ajax({
     method: 'GET',
-    url: 'api/pokemon/' + pokemonId
+    url: '/api/pokemon/' + pokemonId
   });
 };
 
@@ -24232,7 +24232,7 @@ var Root = function Root(_ref) {
     _reactRedux.Provider,
     { store: store },
     _react2.default.createElement(
-      _reactRouterDom.HashRouter,
+      _reactRouterDom.BrowserRouter,
       null,
       _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _pokemon_index_container2.default })
     )
@@ -46706,6 +46706,10 @@ var _react = __webpack_require__(24);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _pokemon_items = __webpack_require__(286);
+
+var _pokemon_items2 = _interopRequireDefault(_pokemon_items);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -46785,17 +46789,25 @@ var PokemonDetail = function (_React$Component) {
             null,
             'Moves: ',
             pokemon.moves && pokemon.moves.join(', ')
-          ),
-          _react2.default.createElement(PokemonItems, { items: items })
+          )
         )
       );
     }
+    // <PokemonItems items={items} />
+
   }]);
 
   return PokemonDetail;
 }(_react2.default.Component);
 
 exports.default = PokemonDetail;
+
+/***/ }),
+/* 286 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 /***/ })
 /******/ ]);

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PokemonItems from './pokemon_items';
 
 export default class PokemonDetail extends React.Component {
   constructor(props) {
@@ -36,10 +36,10 @@ export default class PokemonDetail extends React.Component {
             <h3>Attack: {pokemon.attack}</h3>
             <h3>Defense: {pokemon.defense}</h3>
             <h3>Moves: {pokemon.moves && pokemon.moves.join(', ')}</h3>
-            <PokemonItems items={items} />
           </div>
         }
       </div>
     );
   }
+  // <PokemonItems items={items} />
 }

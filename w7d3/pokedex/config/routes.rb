@@ -7,4 +7,5 @@ Rails.application.routes.draw do
     resources :pokemon, except: %i(new edit)
   end
 
+  get '*path' => 'static_pages#root'
 end
