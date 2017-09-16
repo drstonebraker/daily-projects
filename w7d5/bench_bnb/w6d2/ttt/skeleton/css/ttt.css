@@ -1,0 +1,38 @@
+.cfix:after {
+  display:block;
+  content: "";
+  clear:both;
+}
+
+.square-container {
+
+  padding: 0;
+  text-decoration:none;
+  display: block;
+  width: 600px;
+  height: 600px;
+  margin: 0 auto;
+  background: #a00;
+}
+
+.square {
+  display:block;
+  float:left;
+  height:200px;
+  width:200px;
+  box-sizing: border-box;
+  border:1px solid black;
+  background: #22a;
+  font-size: 170px;
+  text-transform: uppercase;
+  text-align:center;
+}
+
+.square:hover {
+  background: yellow;
+  cursor: pointer;
+}
+
+.white {
+  background:white;
+}
